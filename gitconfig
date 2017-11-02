@@ -1,0 +1,28 @@
+[http]
+	sslCAInfo = C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+[diff "astextplain"]
+	textconv = astextplain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %	
+	required = true
+	process = git-lfs filter-process
+[credential]
+	helper = manager
+[alias]
+	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	st = status
+	br = branch
+	db = branch -d
+	ci = commit -m
+	ca = commit --amend
+	co = checkout
+	cb = checkout -b
+	ds = diff --staged
+	ps = push
+	pl = pull
+	p = !git pull && git push && git lg	
+	review-local = "!git lg @{push}.."
+	last = !git lg HEAD~1..HEAD && git diff HEAD~1..HEAD
+	undo = !git checkout --$1
+	
